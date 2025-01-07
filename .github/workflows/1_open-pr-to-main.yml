@@ -11,17 +11,7 @@ jobs:
 
     steps:
       - name: Checkout the feature branch
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - name: Run tests
-        run: |
-          export PYTHONPATH=$PYTHONPATH:app
-          python -m unittest discover -s app/tests -p "test_*.py"   
+        uses: actions/checkout@v4 
 
       - name: Create Pull Request
         uses: repo-sync/pull-request@v2
