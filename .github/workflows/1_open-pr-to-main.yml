@@ -1,0 +1,30 @@
+name: Open pull request to main repository
+
+on:
+  push:
+    branches:
+      - feature/**
+
+jobs:
+  open-pr-to-main:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the feature branch
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Run tests
+        run: |
+          export PYTHONPATH=$PYTHONPATH:app
+          python -m unittest discover -s app/tests -p "test_*.py"   
+
+      - name: Create Pull Request
+        uses: repo-sync/pull-request@v2
+        with:
+          destination_branch: main
+          pr_title: ${{ github.ref_name }} -> main
