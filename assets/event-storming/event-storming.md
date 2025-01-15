@@ -19,3 +19,27 @@ Em seguida, organizou-se os eventos na linha do tempo para o fluxo completo.
 </p>
 
 ### Dicionário de linguagem ubíqua
+
+*Usuário (user)*
+
+Definição: uma pessoa que utiliza o sistema para processar seus vídeos.
+
+Atributos: nome, e-mail e senha.
+
+<br>
+
+*Vídeo (video)*
+
+Definição: arquivo a ser processado.
+
+<br>
+
+*Imagens (images)*
+
+Definição: arquivos resultantes do processamento.
+
+<br>
+
+*.Zip*
+
+Definição: extensão do arquivo resultante do processamento.
