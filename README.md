@@ -25,7 +25,7 @@ Ilustrou-se o processo do negócio através do [**event storming**](assets/event
 
 ## Arquitetura
 
-Confira mais sobre a [**arquitetura**]().
+Confira mais sobre a [**arquitetura**](assets/arquitetura/arquitetura.md).
 
 ## Guia instrutivo e collection
 
