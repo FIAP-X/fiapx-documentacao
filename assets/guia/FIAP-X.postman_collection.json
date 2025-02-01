@@ -1,0 +1,342 @@
+{
+	"info": {
+		"_postman_id": "311a034e-c16e-463e-b881-3f40109657d2",
+		"name": "FIAP-X",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31739777"
+	},
+	"item": [
+		{
+			"name": "1 - Cadastrar usuário",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Amz-Target",
+						"value": "AWSCognitoIdentityProviderService.AdminCreateUser",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-amz-json-1.1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"Username\": \"d.dcezarsilva@gmail.com\",\r\n   \"UserPoolId\": \"us-east-1_k5Ao75sOx\",\r\n   \"UserAttributes\": [ \r\n      { \r\n         \"Name\": \"name\",\r\n         \"Value\": \"Deivid Cezar\"\r\n      }\r\n   ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cognito-idp.us-east-1.amazonaws.com/?Action=AdminCreateUser",
+					"protocol": "https",
+					"host": [
+						"cognito-idp",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "Action",
+							"value": "AdminCreateUser"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2 - Autenticar usuário",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Amz-Target",
+						"value": "AWSCognitoIdentityProviderService.AdminInitiateAuth",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-amz-json-1.1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"AuthParameters\": { \r\n      \"USERNAME\" : \"d.dcezarsilva@gmail.com\",\r\n      \"PASSWORD\" : \"Senha12#\" \r\n   },\r\n   \"ClientId\": \"bcmpd3ej7aukdiddm3c6k44mh\",\r\n   \"UserPoolId\": \"us-east-1_k5Ao75sOx\",\r\n   \"AuthFlow\": \"ADMIN_USER_PASSWORD_AUTH\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cognito-idp.us-east-1.amazonaws.com/?Action=AdminInitiateAuth",
+					"protocol": "https",
+					"host": [
+						"cognito-idp",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "Action",
+							"value": "AdminInitiateAuth"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3 - Definir senha permanente",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Amz-Target",
+						"value": "AWSCognitoIdentityProviderService.RespondToAuthChallenge",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-amz-json-1.1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ClientId\": \"bcmpd3ej7aukdiddm3c6k44mh\",\r\n    \"ChallengeName\": \"NEW_PASSWORD_REQUIRED\",\r\n    \"ChallengeResponses\": {\r\n        \"USERNAME\" : \"d.dcezarsilva@gmail.com\",\r\n        \"NEW_PASSWORD\" : \"Senha12#\" \r\n    },\r\n    \"Session\": \"AYABeG7xHKqSidR8NhXXxEz54sAAHQABAAdTZXJ2aWNlABBDb2duaXRvVXNlclBvb2xzAAEAB2F3cy1rbXMAS2Fybjphd3M6a21zOnVzLWVhc3QtMTo3NDU2MjM0Njc1NTU6a2V5L2IxNTVhZmNhLWJmMjktNGVlZC1hZmQ4LWE5ZTA5MzY1M2RiZQC4AQIBAHjHL4WD3WpekpFe85nxP9Nwg99u3bPN6BTSaB-uHZcTLAEmCe_jLNYxMcdkQIUqaYD3AAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMg3_SFKp9zTFU8MlVAgEQgDvvHLkJ7kV5S_KyNvwkoRRUWO0METW5Zp9Ya0SRxGSpek9peUELml1IDe-8iq2gDLsGvy-2RfhkOhWs4wIAAAAADAAAEAAAAAAAAAAAAAAAAAAy0LmeGflDhQPitpt395lJ_____wAAAAEAAAAAAAAAAAAAAAEAAADwhHBauCzqJqA59j8x4fQpkD0LlHKiVK8nItNczadFouo9QKhFCoE_JSOkepVdkDomqJSACHxvUDjVnLrt_HxLCU4LUwbsuWb9x_mlhrrgkALoYvjZpRuwuH1ERbIRX6lRbX9UC8_yd2Wr_ANy9uiyZ7xL8FJGxUuZ3DhK4HH7wg2HIFGf15etuoZbD6pXt4ph2ok2TQWbt7LeDZ6nW7WA7eLNwL62J44B2ht05AcoLsbUbeDt43nyOhX0Fdnwen6_ie_v6NVfPc1ZvFpxq5kyN5J4iOSxJHymo6FAtgkKYl4ezEhqrTg2TyyVCNfe-5kAKriZMjPRb410tWOIBeiaDw\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cognito-idp.us-east-1.amazonaws.com/?Action=RespondToAuthChallenge",
+					"protocol": "https",
+					"host": [
+						"cognito-idp",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "Action",
+							"value": "RespondToAuthChallenge"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4 - Gerar url presigned",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJraWQiOiJjUjI2azRoelhmQjluNGZJZ3RPMjNyYjZtTzFBb1BjbndteEZwbWk1Tk1jPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIzNDQ4YzRjOC1iMDcxLTcwMmMtOTUwNy1mYTM5YmNmNzJkMTYiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9rNUFvNzVzT3giLCJjb2duaXRvOnVzZXJuYW1lIjoiMzQ0OGM0YzgtYjA3MS03MDJjLTk1MDctZmEzOWJjZjcyZDE2Iiwib3JpZ2luX2p0aSI6IjMzNmYwMDIzLWQ4OTAtNGVlZi1iYTY5LWVhYjNjNDU2MDM2ZiIsImF1ZCI6ImJjbXBkM2VqN2F1a2RpZGRtM2M2azQ0bWgiLCJldmVudF9pZCI6ImIxYTUwMTk0LTFiOTUtNDM5OS04NGUxLTJhODRlN2Q4ZjA3YiIsInRva2VuX3VzZSI6ImlkIiwiYXV0aF90aW1lIjoxNzM4NDI5OTM1LCJuYW1lIjoiRGVpdmlkIENlemFyIiwiZXhwIjoxNzM4NDMzNTM1LCJpYXQiOjE3Mzg0Mjk5MzUsImp0aSI6ImUwMWY4NjZiLTY3M2MtNDUyOS04MmNjLThiMGQ0OGQ2Yzc4MSIsImVtYWlsIjoiZC5kY2V6YXJzaWx2YUBnbWFpbC5jb20ifQ.ZZRcjV_fmKG_5XC5ovY-SuKJnHhXi-V7pFHF0vMmYj2ln1-4lDEEzPjMrht1CJWE97dXMBUzGKoOAGEQrrmqi9sV3LBrVtdYenX2nhlCJrKLIX-rl47UVnZiUoYXQbPmSFDeIuCFn_5_D-F4nmBnWXTAd81KRDnwG0KRNYkXRs_uG-QxEYyjQ_i164jD4JdAsv7NjU0i-gsywKvIOg8lK05zlYpd-Ly-HWKENwyxrHH8rEGaNogpq-TvxwZDDxHUKeaCdLnRt6iJGtKYJ9mrMgPXENeJkGjCsGKHXH2_7baIDDHmQkMFOsl_4RaNyFLR9q4t4vgPSkqPZYMRkoirjw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://5xixch7f96.execute-api.us-east-1.amazonaws.com/prod/generate-url",
+					"protocol": "https",
+					"host": [
+						"5xixch7f96",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"prod",
+						"generate-url"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5 - Upload de vÍdeo",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/C:/Users/Deivid Cezar/Desktop/video.mp4"
+					}
+				},
+				"url": {
+					"raw": "https://fiapx-upload-bucket.s3.amazonaws.com/videos/3448c4c8-b071-702c-9507-fa39bcf72d16/728b2b8e-6f65-4be6-8596-36e038649466?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAW5IVGATJFXNLPZL2%2F20250201%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250201T141929Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIERUylseY6ucTYi05S0tlzJM1wQYQhIxmDUo8yVz7rHtAiEAoKMVnj9%2FZcCH9tvbkyfigZ2pvA0voYDOW3XAlN%2FpYgkqugII1P%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0NzUxNzUxOTE3NjIiDO%2FcflHfxRuFs%2F6LJSqOAqFWv29xaaQjbrP%2F11Vu7B3PNnUJfwGM0XUtM%2F0n1MIW7cTOY%2FZuz7XuNP0baBXQG%2BxUwVLKANSCWq7TFfd5AaTlHNDQTEJFXVqTRKSJ4SUE%2BVEW1t%2FIppHh4xf8U2viJ0RuEmpElGgVL2OQNcGPpKE214unXBg9bNurEuUrbvjAH0AIJ3AdJUFpdngkldfUAVfwNW2XNYP9%2F8%2FzWr%2B6a57CA4HesuhN3DprYfev%2Bb01EOiS1Erv4F%2BHe2dI6FYr2wx10H4Kdq%2BwoIS1qpyj9owfP6Fbey2r3Dx1vk0i1aBBsjlctkuHi8UFYloiUOuvtD5C6poiFEEwm4H9VcyeLRai4GGpaluL7atSniTx%2BTCn9ve8BjqdAVYvEf2n%2BiJrL6YZROZzD6R9Kq0H%2BT6tugzEoqR7xSnTVTiAaUHd1CRF%2B3bWgqVQ2JixWmroEZzHbfv5CqBFmzrjyAEG5v4Nu%2FJaLHGoorBBiSu7dsxS3vJukrfHpEyNf5osaRGUCh2RK2%2BCfGK7%2BOlVnihqcPy5bYcq8jupHgima0%2FJ%2BE5BOYooxp1c2y37WgMoWG%2Ft1KsDgAPmmc0%3D&X-Amz-Signature=affcf86fa78aa4a7d17721fb0c043ae9c2958e79e575ce406577a98c7ad2755c",
+					"protocol": "https",
+					"host": [
+						"fiapx-upload-bucket",
+						"s3",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"videos",
+						"3448c4c8-b071-702c-9507-fa39bcf72d16",
+						"728b2b8e-6f65-4be6-8596-36e038649466"
+					],
+					"query": [
+						{
+							"key": "X-Amz-Algorithm",
+							"value": "AWS4-HMAC-SHA256"
+						},
+						{
+							"key": "X-Amz-Credential",
+							"value": "ASIAW5IVGATJFXNLPZL2%2F20250201%2Fus-east-1%2Fs3%2Faws4_request"
+						},
+						{
+							"key": "X-Amz-Date",
+							"value": "20250201T141929Z"
+						},
+						{
+							"key": "X-Amz-Expires",
+							"value": "3600"
+						},
+						{
+							"key": "X-Amz-SignedHeaders",
+							"value": "host"
+						},
+						{
+							"key": "X-Amz-Security-Token",
+							"value": "IQoJb3JpZ2luX2VjEMv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIERUylseY6ucTYi05S0tlzJM1wQYQhIxmDUo8yVz7rHtAiEAoKMVnj9%2FZcCH9tvbkyfigZ2pvA0voYDOW3XAlN%2FpYgkqugII1P%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0NzUxNzUxOTE3NjIiDO%2FcflHfxRuFs%2F6LJSqOAqFWv29xaaQjbrP%2F11Vu7B3PNnUJfwGM0XUtM%2F0n1MIW7cTOY%2FZuz7XuNP0baBXQG%2BxUwVLKANSCWq7TFfd5AaTlHNDQTEJFXVqTRKSJ4SUE%2BVEW1t%2FIppHh4xf8U2viJ0RuEmpElGgVL2OQNcGPpKE214unXBg9bNurEuUrbvjAH0AIJ3AdJUFpdngkldfUAVfwNW2XNYP9%2F8%2FzWr%2B6a57CA4HesuhN3DprYfev%2Bb01EOiS1Erv4F%2BHe2dI6FYr2wx10H4Kdq%2BwoIS1qpyj9owfP6Fbey2r3Dx1vk0i1aBBsjlctkuHi8UFYloiUOuvtD5C6poiFEEwm4H9VcyeLRai4GGpaluL7atSniTx%2BTCn9ve8BjqdAVYvEf2n%2BiJrL6YZROZzD6R9Kq0H%2BT6tugzEoqR7xSnTVTiAaUHd1CRF%2B3bWgqVQ2JixWmroEZzHbfv5CqBFmzrjyAEG5v4Nu%2FJaLHGoorBBiSu7dsxS3vJukrfHpEyNf5osaRGUCh2RK2%2BCfGK7%2BOlVnihqcPy5bYcq8jupHgima0%2FJ%2BE5BOYooxp1c2y37WgMoWG%2Ft1KsDgAPmmc0%3D"
+						},
+						{
+							"key": "X-Amz-Signature",
+							"value": "affcf86fa78aa4a7d17721fb0c043ae9c2958e79e575ce406577a98c7ad2755c"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6 - Consultar status",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJraWQiOiJjUjI2azRoelhmQjluNGZJZ3RPMjNyYjZtTzFBb1BjbndteEZwbWk1Tk1jPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIzNDQ4YzRjOC1iMDcxLTcwMmMtOTUwNy1mYTM5YmNmNzJkMTYiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9rNUFvNzVzT3giLCJjb2duaXRvOnVzZXJuYW1lIjoiMzQ0OGM0YzgtYjA3MS03MDJjLTk1MDctZmEzOWJjZjcyZDE2Iiwib3JpZ2luX2p0aSI6IjA5NWY5MjI2LTlkYWUtNGM0ZC1hNGRiLTE4OTc2Yjk5OTE4MiIsImF1ZCI6ImJjbXBkM2VqN2F1a2RpZGRtM2M2azQ0bWgiLCJldmVudF9pZCI6IjRmM2ZiMTVmLWUxMDktNGExNC04YjhkLWUxNDQ3ZjNlMWMwNCIsInRva2VuX3VzZSI6ImlkIiwiYXV0aF90aW1lIjoxNzM4NDQ1OTYxLCJuYW1lIjoiRGVpdmlkIENlemFyIiwiZXhwIjoxNzM4NDQ5NTYxLCJpYXQiOjE3Mzg0NDU5NjEsImp0aSI6ImJhNzAyMTgxLWIwZDQtNDUyZC04ZmNmLTFiMDRiYmZlOWY1YiIsImVtYWlsIjoiZC5kY2V6YXJzaWx2YUBnbWFpbC5jb20ifQ.oDi1qsbgzEXKOTzs4MZue1OReT4r7VI_BfnJ-1MFPQl_O5E4zLzRG2HX1VTro8vTEGLGHRSNIzq-nZ19BVjIxxaqytOitAqRFhU8QbybcoK3kh_qBsPxBcdreMwZ9OaWwIRyefPLq3iUkVX1w6VJJam0LT_OXvg64iU5frpvzmaQoTwYSuAm_NpfETexA6mpEozVTL0Hy8eOLGx5vyTELM4s1ZmbohJ2Uk8_aSOfMufa-XhsqRrZjJE9MnN5rCGnlb5qsMEwgKevRz5VtMdStM1VGQ5TaPfbOkfzjGOe4yRi0bKfhRITdvjgnTN9-7MzUJd57SLeNTsaemJ2dcTQdw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://5xixch7f96.execute-api.us-east-1.amazonaws.com/prod/processamento/3448c4c8-b071-702c-9507-fa39bcf72d16",
+					"protocol": "https",
+					"host": [
+						"5xixch7f96",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"prod",
+						"processamento",
+						"3448c4c8-b071-702c-9507-fa39bcf72d16"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7 - Gerar url download",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJraWQiOiJjUjI2azRoelhmQjluNGZJZ3RPMjNyYjZtTzFBb1BjbndteEZwbWk1Tk1jPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIzNDQ4YzRjOC1iMDcxLTcwMmMtOTUwNy1mYTM5YmNmNzJkMTYiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9rNUFvNzVzT3giLCJjb2duaXRvOnVzZXJuYW1lIjoiMzQ0OGM0YzgtYjA3MS03MDJjLTk1MDctZmEzOWJjZjcyZDE2Iiwib3JpZ2luX2p0aSI6IjA5NWY5MjI2LTlkYWUtNGM0ZC1hNGRiLTE4OTc2Yjk5OTE4MiIsImF1ZCI6ImJjbXBkM2VqN2F1a2RpZGRtM2M2azQ0bWgiLCJldmVudF9pZCI6IjRmM2ZiMTVmLWUxMDktNGExNC04YjhkLWUxNDQ3ZjNlMWMwNCIsInRva2VuX3VzZSI6ImlkIiwiYXV0aF90aW1lIjoxNzM4NDQ1OTYxLCJuYW1lIjoiRGVpdmlkIENlemFyIiwiZXhwIjoxNzM4NDQ5NTYxLCJpYXQiOjE3Mzg0NDU5NjEsImp0aSI6ImJhNzAyMTgxLWIwZDQtNDUyZC04ZmNmLTFiMDRiYmZlOWY1YiIsImVtYWlsIjoiZC5kY2V6YXJzaWx2YUBnbWFpbC5jb20ifQ.oDi1qsbgzEXKOTzs4MZue1OReT4r7VI_BfnJ-1MFPQl_O5E4zLzRG2HX1VTro8vTEGLGHRSNIzq-nZ19BVjIxxaqytOitAqRFhU8QbybcoK3kh_qBsPxBcdreMwZ9OaWwIRyefPLq3iUkVX1w6VJJam0LT_OXvg64iU5frpvzmaQoTwYSuAm_NpfETexA6mpEozVTL0Hy8eOLGx5vyTELM4s1ZmbohJ2Uk8_aSOfMufa-XhsqRrZjJE9MnN5rCGnlb5qsMEwgKevRz5VtMdStM1VGQ5TaPfbOkfzjGOe4yRi0bKfhRITdvjgnTN9-7MzUJd57SLeNTsaemJ2dcTQdw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://5xixch7f96.execute-api.us-east-1.amazonaws.com/prod/processamento/download?chaveZip=zips/3448c4c8-b071-702c-9507-fa39bcf72d16/240caf12-c71c-40cf-abce-7f0ae4cc86c4.zip",
+					"protocol": "https",
+					"host": [
+						"5xixch7f96",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"prod",
+						"processamento",
+						"download"
+					],
+					"query": [
+						{
+							"key": "chaveZip",
+							"value": "zips/3448c4c8-b071-702c-9507-fa39bcf72d16/240caf12-c71c-40cf-abce-7f0ae4cc86c4.zip"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
