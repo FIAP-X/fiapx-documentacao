@@ -23,13 +23,13 @@ Este sistema inclui as seguintes funcionalidades:
 
 Ilustrou-se o processo do negócio através do [**event storming**](assets/event-storming/event-storming.md).
 
-## Arquitetura
+## Arquitetura da solução
 
 Confira mais sobre a [**arquitetura**](assets/arquitetura/arquitetura.md).
 
 ## Guia instrutivo e collection
 
-Acesse o [**guia**]() para execução das APIs.
+Acesse o [**guia**](assets/guia/guia.md) para execução do serviço.
 
 ## Vídeo demonstrativo
 
