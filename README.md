@@ -33,4 +33,4 @@ Acesse o [**guia**](assets/guia/guia.md) para execução do serviço.
 
 ## Vídeo demonstrativo
 
-Acesse o [**vídeo**]() demonstrativo do projeto.
+Acesse o [**vídeo**](https://youtu.be/1xYPalKUni8) demonstrativo do projeto.
