@@ -19,6 +19,10 @@ Este sistema inclui as seguintes funcionalidades:
 - Processamento de vídeos em imagens (.zip)
 - Listagem de status dos vídeos de um usuário
 
+## Repositórios
+
+Acesse os [**repositórios**](https://github.com/orgs/FIAP-X/repositories) do projeto.
+
 ## Event storming
 
 Ilustrou-se o processo do negócio através do [**event storming**](assets/event-storming/event-storming.md).
